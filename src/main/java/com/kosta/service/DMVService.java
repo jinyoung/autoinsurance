@@ -16,11 +16,14 @@ public class DMVService {
 
 
     public String getDriverLicenseNumber(Customer customer) {
-        return null;
+        //This is mock
+        return customer.getFirstName();
     }
 
     public String getDriverLicenseStatus(Policyholder policyholder) {
-        return null;
+        //this is mock
+        return "G";
     }
+
 
 }

@@ -3,15 +3,16 @@ package com.kosta.domain;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Entity @Data
 public class Customer {
 
-	@OneToMany(mappedBy = "ID")
+	@OneToMany(mappedBy = "customer")
 	List<Vehicle> vehicles;
 
 	@Id

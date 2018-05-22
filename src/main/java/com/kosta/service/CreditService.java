@@ -15,6 +15,10 @@ public class CreditService {
 
     public CreditRate getCredit(Policyholder p) {
         //This is mock Service
-        return CreditRate.A;
+        if(p.getSocialSecurityNumber()%2==0) {
+            return CreditRate.A;
+        } else {
+            return CreditRate.D;
+        }
     }
 }

@@ -9,6 +9,18 @@ import java.util.Date;
 public class Vehicle {
 
 
+	public Vehicle() {
+	}
+
+	public Vehicle(String ID, String type, String make, String model, Date year, Customer customer) {
+		this.ID = ID;
+		this.type = type;
+		this.make = make;
+		this.model = model;
+		this.year = year;
+		this.customer = customer;
+	}
+
 	@Id
 	private String ID;
 	private String type;
