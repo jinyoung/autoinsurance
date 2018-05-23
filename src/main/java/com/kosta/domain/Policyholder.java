@@ -2,7 +2,9 @@ package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
 import com.kosta.mock.CRMServiceImp;
-import com.kosta.service.*;
+import com.kosta.service.CreditRate;
+import com.kosta.service.CreditService;
+import com.kosta.service.DMVService;
 import lombok.Data;
 
 import javax.persistence.Entity;

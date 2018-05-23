@@ -3,7 +3,9 @@ package com.kosta.config;
 import com.kosta.mock.CRMServiceImp;
 import com.kosta.mock.CreditServiceImp;
 import com.kosta.mock.DMVServiceImp;
-import com.kosta.service.*;
+import com.kosta.service.CRMService;
+import com.kosta.service.CreditService;
+import com.kosta.service.DMVService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
