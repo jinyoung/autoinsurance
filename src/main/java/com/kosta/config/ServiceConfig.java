@@ -1,15 +1,16 @@
 package com.kosta.config;
 
-import com.kosta.service.CreditService;
-import com.kosta.service.CreditServiceImp;
-import com.kosta.service.DMVService;
-import com.kosta.service.DMVServiceImp;
+import com.kosta.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ServiceConfig {
 
+    @Bean
+    public CRMService crmService() {
+        return new CRMServiceImp();
+    }
     @Bean
     public CreditService creditService(){
         return new CreditServiceImp();

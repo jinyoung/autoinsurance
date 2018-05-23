@@ -39,7 +39,8 @@ public class Policyholder extends Customer {
 	@PrePersist
 	public void validate() throws IOException {
 
-		this.setID(CRMService.getService().getCustomerID(this));
+		setID(AutoInsuranceApplication.applicationContext.
+				getBean(CRMServiceImp.class).getCustomerID(this));
 
 //		//Version 1
 //		if(CreditServiceImp.getCreditServiceImp().getCredit(this).compareTo(CreditRate.C) < 0){
