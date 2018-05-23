@@ -1,5 +1,6 @@
 package com.kosta.domain;
 
+import com.kosta.AutoInsuranceApplication;
 import com.kosta.service.CRMService;
 import com.kosta.service.CreditRate;
 import com.kosta.service.CreditService;
@@ -79,7 +80,10 @@ public class Policyholder extends Customer {
 	}
 
 	private void checkCreditRate() {
-		CreditRate cr = CreditService.getCreditService().getCredit(this);
+		//CreditRate cr = CreditService.getCreditService().getCredit(this);
+
+		//Spring Version
+		CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(this);
 		setCerditRate(cr.toString());
 		if(cr.compareTo(CreditRate.C) >= 0){
 			throw new IllegalStateException("CreditRate should be higher then 'C'");
