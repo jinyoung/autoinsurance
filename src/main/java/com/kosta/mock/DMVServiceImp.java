@@ -1,7 +1,8 @@
-package com.kosta.service;
+package com.kosta.mock;
 
 import com.kosta.domain.Customer;
 import com.kosta.domain.Policyholder;
+import com.kosta.service.DMVService;
 
 public class DMVServiceImp implements DMVService {
 

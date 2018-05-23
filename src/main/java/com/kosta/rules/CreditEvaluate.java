@@ -5,7 +5,6 @@ import com.kosta.domain.Customer;
 import com.kosta.domain.Policyholder;
 import com.kosta.service.CreditRate;
 import com.kosta.service.CreditService;
-import com.kosta.service.CreditServiceImp;
 
 public class CreditEvaluate extends Evaluate {
 

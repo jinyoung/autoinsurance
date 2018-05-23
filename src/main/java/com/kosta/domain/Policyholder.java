@@ -1,6 +1,7 @@
 package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
+import com.kosta.mock.CRMServiceImp;
 import com.kosta.service.*;
 import lombok.Data;
 
