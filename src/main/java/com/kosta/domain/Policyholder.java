@@ -1,10 +1,7 @@
 package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
-import com.kosta.service.CRMService;
-import com.kosta.service.CreditRate;
-import com.kosta.service.CreditService;
-import com.kosta.service.DMVService;
+import com.kosta.service.*;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -35,7 +32,7 @@ public class Policyholder extends Customer {
 	}
 
 	public void registerVehicleToInsure(){
-		DMVService ds = DMVService.getService();
+		DMVService ds = AutoInsuranceApplication.applicationContext.getBean(DMVService.class);
 		setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
 		setDriverLicenseStatus(ds.getDriverLicenseStatus(this));
 	}
@@ -45,7 +42,7 @@ public class Policyholder extends Customer {
 		this.setID(CRMService.getService().getCustomerID(this));
 
 //		//Version 1
-//		if(CreditService.getCreditService().getCredit(this).compareTo(CreditRate.C) < 0){
+//		if(CreditServiceImp.getCreditServiceImp().getCredit(this).compareTo(CreditRate.C) < 0){
 //			throw new IllegalStateException("CreditRate should be higher then 'C'");
 //		}
 //
@@ -80,8 +77,6 @@ public class Policyholder extends Customer {
 	}
 
 	private void checkCreditRate() {
-		//CreditRate cr = CreditService.getCreditService().getCredit(this);
-
 		//Spring Version
 		CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(this);
 		setCerditRate(cr.toString());
@@ -91,7 +86,8 @@ public class Policyholder extends Customer {
 	}
 
 	private void checkLicenseInformation() {
-		DMVService ds = DMVService.getService();
+		//Spring Version
+		DMVService ds = AutoInsuranceApplication.applicationContext.getBean(DMVService.class);
 		setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
 		setDriverLicenseStatus(ds.getDriverLicenseStatus(this));
 		if(getDriverLicenseNumber().isEmpty() || getDriverLicenseStatus().isEmpty()) {

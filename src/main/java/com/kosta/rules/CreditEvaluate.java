@@ -1,9 +1,11 @@
 package com.kosta.rules;
 
+import com.kosta.AutoInsuranceApplication;
 import com.kosta.domain.Customer;
 import com.kosta.domain.Policyholder;
 import com.kosta.service.CreditRate;
 import com.kosta.service.CreditService;
+import com.kosta.service.CreditServiceImp;
 
 public class CreditEvaluate extends Evaluate {
 
@@ -14,7 +16,7 @@ public class CreditEvaluate extends Evaluate {
     @Override
     public boolean meet(Customer customer) {
 
-        CreditRate cr = CreditService.getCreditService().getCredit((Policyholder)customer);
+        CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit((Policyholder)customer);
         int compareResult = cr.compareTo((CreditRate)compareeValue);
         switch (getOperator()){
             case EQUALS:
