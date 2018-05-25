@@ -16,8 +16,8 @@ public class Vehicle {
     private String primaryUsage;
     private String parkingZipcode;
     private String ownership;
-    private Collection<Insurancepolicy> insurancepoliciesById;
-    private Customer customerByCustomerId;
+    private Collection<Insurancepolicy> insurancepolicies;
+    private Customer customer;
 
     @Id
     @Column(name = "ID")
@@ -132,21 +132,21 @@ public class Vehicle {
     }
 
     @OneToMany(mappedBy = "vehicleByVehicleId")
-    public Collection<Insurancepolicy> getInsurancepoliciesById() {
-        return insurancepoliciesById;
+    public Collection<Insurancepolicy> getInsurancepolicies() {
+        return insurancepolicies;
     }
 
-    public void setInsurancepoliciesById(Collection<Insurancepolicy> insurancepoliciesById) {
-        this.insurancepoliciesById = insurancepoliciesById;
+    public void setInsurancepolicies(Collection<Insurancepolicy> insurancepoliciesById) {
+        this.insurancepolicies = insurancepoliciesById;
     }
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "ID", nullable = false, insertable =false, updatable =false)
-    public Customer getCustomerByCustomerId() {
-        return customerByCustomerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerByCustomerId(Customer customerByCustomerId) {
-        this.customerByCustomerId = customerByCustomerId;
+    public void setCustomer(Customer customerByCustomerId) {
+        this.customer = customerByCustomerId;
     }
 }

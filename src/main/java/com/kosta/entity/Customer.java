@@ -29,8 +29,8 @@ public class Customer {
     private String previousInsuranceCarrier;
     private String previousInsurancePolicyId;
     private String discriminator;
-    private Collection<Insureddriver> insureddriversById;
-    private Collection<Vehicle> vehiclesById;
+    private Collection<Insureddriver> insureddrivers;
+    private Collection<Vehicle> vehicles;
 
     @Id
     @Column(name = "ID")
@@ -287,21 +287,21 @@ public class Customer {
         return Objects.hash(id, firstName, lastName, birthDate, driverLicenseNumber, socialSecurityNumber, gender, marritalStatus, streetAddress, aptUnitNumber, city, state, zipcode, cerditRate, driverLicenseStatus, highestEduLevel, accidentHistory, emailAddress, healthInsurance, previousInsuranceCarrier, previousInsurancePolicyId, discriminator);
     }
 
-    @OneToMany(mappedBy = "customerByCustomerId")
-    public Collection<Insureddriver> getInsureddriversById() {
-        return insureddriversById;
+    @OneToMany(mappedBy = "customer")
+    public Collection<Insureddriver> getInsureddrivers() {
+        return insureddrivers;
     }
 
-    public void setInsureddriversById(Collection<Insureddriver> insureddriversById) {
-        this.insureddriversById = insureddriversById;
+    public void setInsureddrivers(Collection<Insureddriver> insureddriversById) {
+        this.insureddrivers = insureddriversById;
     }
 
-    @OneToMany(mappedBy = "customerByCustomerId")
-    public Collection<Vehicle> getVehiclesById() {
-        return vehiclesById;
+    @OneToMany(mappedBy = "customer")
+    public Collection<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setVehiclesById(Collection<Vehicle> vehiclesById) {
-        this.vehiclesById = vehiclesById;
+    public void setVehicles(Collection<Vehicle> vehiclesById) {
+        this.vehicles = vehiclesById;
     }
 }

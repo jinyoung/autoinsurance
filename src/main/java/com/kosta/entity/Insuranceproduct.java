@@ -45,7 +45,7 @@ public class Insuranceproduct {
         return Objects.hash(id, name);
     }
 
-    @OneToMany(mappedBy = "insuranceproductByInsuranceProductId")
+    @OneToMany(mappedBy = "insuranceproduct")
     public Collection<Coverageitem> getCoverageitemsById() {
         return coverageitemsById;
     }

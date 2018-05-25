@@ -123,7 +123,7 @@ public class Insurancepolicy {
         this.vehicleByVehicleId = vehicleByVehicleId;
     }
 
-    @OneToMany(mappedBy = "insurancepolicyByInsurancePolicyId")
+    @OneToMany(mappedBy = "insurancepolicy")
     public Collection<Insureddriver> getInsureddriversById() {
         return insureddriversById;
     }
@@ -132,7 +132,7 @@ public class Insurancepolicy {
         this.insureddriversById = insureddriversById;
     }
 
-    @OneToMany(mappedBy = "insurancepolicyByInsurancePolicyId")
+    @OneToMany(mappedBy = "insurancepolicy")
     public Collection<Premiumpayment> getPremiumpaymentsById() {
         return premiumpaymentsById;
     }
@@ -141,7 +141,7 @@ public class Insurancepolicy {
         this.premiumpaymentsById = premiumpaymentsById;
     }
 
-    @OneToMany(mappedBy = "insurancepolicyByInsurancePolicyId")
+    @OneToMany(mappedBy = "insurancepolicy")
     public Collection<Selectedoption> getSelectedoptionsById() {
         return selectedoptionsById;
     }

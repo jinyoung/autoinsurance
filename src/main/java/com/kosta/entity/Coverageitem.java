@@ -10,7 +10,7 @@ public class Coverageitem {
     private String insuranceProductId;
     private String id;
     private String name;
-    private Insuranceproduct insuranceproductByInsuranceProductId;
+    private Insuranceproduct insuranceproduct;
     private Collection<Coverageitemoption> coverageitemoptions;
     private Collection<Selectedoption> selectedoptions;
 
@@ -62,12 +62,12 @@ public class Coverageitem {
 
     @ManyToOne
     @JoinColumn(name = "InsuranceProductID", referencedColumnName = "ID", nullable = false, insertable =false, updatable =false)
-    public Insuranceproduct getInsuranceproductByInsuranceProductId() {
-        return insuranceproductByInsuranceProductId;
+    public Insuranceproduct getInsuranceproduct() {
+        return insuranceproduct;
     }
 
-    public void setInsuranceproductByInsuranceProductId(Insuranceproduct insuranceproductByInsuranceProductId) {
-        this.insuranceproductByInsuranceProductId = insuranceproductByInsuranceProductId;
+    public void setInsuranceproduct(Insuranceproduct insuranceproductByInsuranceProductId) {
+        this.insuranceproduct = insuranceproductByInsuranceProductId;
     }
 
     @OneToMany(mappedBy = "coverageitem")

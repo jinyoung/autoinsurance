@@ -11,7 +11,7 @@ public class Selectedoption {
     private String coverageItemInsuranceProductId;
     private String coverageItemId;
     private BigDecimal value;
-    private Insurancepolicy insurancepolicyByInsurancePolicyId;
+    private Insurancepolicy insurancepolicy;
     private Coverageitem coverageitem;
 
     @Id
@@ -73,12 +73,12 @@ public class Selectedoption {
 
     @ManyToOne
     @JoinColumn(name = "InsurancePolicyID", referencedColumnName = "ID", nullable = false, insertable =false, updatable =false)
-    public Insurancepolicy getInsurancepolicyByInsurancePolicyId() {
-        return insurancepolicyByInsurancePolicyId;
+    public Insurancepolicy getInsurancepolicy() {
+        return insurancepolicy;
     }
 
-    public void setInsurancepolicyByInsurancePolicyId(Insurancepolicy insurancepolicyByInsurancePolicyId) {
-        this.insurancepolicyByInsurancePolicyId = insurancepolicyByInsurancePolicyId;
+    public void setInsurancepolicy(Insurancepolicy insurancepolicyByInsurancePolicyId) {
+        this.insurancepolicy = insurancepolicyByInsurancePolicyId;
     }
 
     @ManyToOne

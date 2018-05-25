@@ -14,7 +14,7 @@ public class Premiumpayment {
     private String accountId;
     private String accountPasscode;
     private BigDecimal paidAmount;
-    private Insurancepolicy insurancepolicyByInsurancePolicyId;
+    private Insurancepolicy insurancepolicy;
 
     @Id
     @Column(name = "InsurancePolicyID")
@@ -97,11 +97,11 @@ public class Premiumpayment {
 
     @ManyToOne
     @JoinColumn(name = "InsurancePolicyID", referencedColumnName = "ID", nullable = false, insertable =false, updatable =false)
-    public Insurancepolicy getInsurancepolicyByInsurancePolicyId() {
-        return insurancepolicyByInsurancePolicyId;
+    public Insurancepolicy getInsurancepolicy() {
+        return insurancepolicy;
     }
 
-    public void setInsurancepolicyByInsurancePolicyId(Insurancepolicy insurancepolicyByInsurancePolicyId) {
-        this.insurancepolicyByInsurancePolicyId = insurancepolicyByInsurancePolicyId;
+    public void setInsurancepolicy(Insurancepolicy insurancepolicyByInsurancePolicyId) {
+        this.insurancepolicy = insurancepolicyByInsurancePolicyId;
     }
 }

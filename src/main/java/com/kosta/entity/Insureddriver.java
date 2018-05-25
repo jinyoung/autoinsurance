@@ -9,8 +9,8 @@ public class Insureddriver {
     private String customerId;
     private String insurancePolicyId;
     private String relationToPolicyholder;
-    private Customer customerByCustomerId;
-    private Insurancepolicy insurancepolicyByInsurancePolicyId;
+    private Customer customer;
+    private Insurancepolicy insurancepolicy;
 
     @Id
     @Column(name = "CustomerID")
@@ -60,21 +60,21 @@ public class Insureddriver {
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "ID", nullable = false, insertable =false, updatable =false)
-    public Customer getCustomerByCustomerId() {
-        return customerByCustomerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerByCustomerId(Customer customerByCustomerId) {
-        this.customerByCustomerId = customerByCustomerId;
+    public void setCustomer(Customer customerByCustomerId) {
+        this.customer = customerByCustomerId;
     }
 
     @ManyToOne
     @JoinColumn(name = "InsurancePolicyID", referencedColumnName = "ID", nullable = false, insertable =false, updatable =false)
-    public Insurancepolicy getInsurancepolicyByInsurancePolicyId() {
-        return insurancepolicyByInsurancePolicyId;
+    public Insurancepolicy getInsurancepolicy() {
+        return insurancepolicy;
     }
 
-    public void setInsurancepolicyByInsurancePolicyId(Insurancepolicy insurancepolicyByInsurancePolicyId) {
-        this.insurancepolicyByInsurancePolicyId = insurancepolicyByInsurancePolicyId;
+    public void setInsurancepolicy(Insurancepolicy insurancepolicyByInsurancePolicyId) {
+        this.insurancepolicy = insurancepolicyByInsurancePolicyId;
     }
 }
