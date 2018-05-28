@@ -1,11 +1,13 @@
 package com.kosta.service;
 
-import com.kosta.domain.Customer;
 import com.kosta.domain.Policyholder;
+import com.kosta.domain.Vehicle;
+
+import java.util.List;
 
 public interface DMVService {
 
-    String getDriverLicenseNumber(Customer customer);
+    String getDriverLicenseNumber(Policyholder policyholder);
     String getDriverLicenseStatus(Policyholder policyholder);
-
+    List<Vehicle> getVehicles(Policyholder policyholder);
 }
