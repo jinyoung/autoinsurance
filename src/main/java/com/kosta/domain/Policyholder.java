@@ -14,7 +14,7 @@ import java.io.IOException;
 @Entity @Data
 public class Policyholder extends Customer {
 
-	private String customerId;
+	private String driverLicenseNumber;
 	private String driverLicenseStatus;
 	private String highestEduLevel;
 	private String accidentHistory;

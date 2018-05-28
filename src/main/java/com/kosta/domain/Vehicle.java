@@ -3,7 +3,7 @@ package com.kosta.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity @Data
 public class Vehicle {
@@ -12,7 +12,7 @@ public class Vehicle {
 	public Vehicle() {
 	}
 
-	public Vehicle(String ID, String type, String make, String model, Date year, Customer customer) {
+	public Vehicle(String ID, String type, String make, String model, LocalDate year, Customer customer) {
 		this.ID = ID;
 		this.type = type;
 		this.make = make;
@@ -26,7 +26,7 @@ public class Vehicle {
 	private String type;
 	private String make;
 	private String model;
-	private Date year;
+	private LocalDate year;
 	private String primaryUsage;
 	private String parkingZipcode;
 	private String ownership;

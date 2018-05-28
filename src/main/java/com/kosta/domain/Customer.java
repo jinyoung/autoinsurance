@@ -29,7 +29,6 @@ public class Customer {
 	private String zipcode;
 	private int socialSecurityNumber;
 	private String cerditRate;
-	private String driverLicenseNumber;
 	private String gender;
 	private String marritalStatus;
 
