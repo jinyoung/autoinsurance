@@ -1,7 +1,6 @@
 package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
-import com.kosta.mock.CRMServiceImp;
 import com.kosta.service.CreditRate;
 import com.kosta.service.CreditService;
 import com.kosta.service.DMVService;
@@ -15,12 +14,7 @@ import java.io.IOException;
 @Entity @Data
 public class Policyholder extends Customer {
 
-	private String streetAddress;
-	private String aptUnitNumber;
-	private String city;
-	private String state;
-	private String zipcode;
-	private String cerditRate;
+	private String customerId;
 	private String driverLicenseStatus;
 	private String highestEduLevel;
 	private String accidentHistory;
@@ -42,8 +36,7 @@ public class Policyholder extends Customer {
 	@PrePersist
 	public void validate() throws IOException {
 
-		setID(AutoInsuranceApplication.applicationContext.
-				getBean(CRMServiceImp.class).getCustomerID(this));
+
 
 //		//Version 1
 //		if(CreditServiceImp.getCreditServiceImp().getCredit(this).compareTo(CreditRate.C) < 0){

@@ -10,16 +10,19 @@ import java.util.Date;
 @Entity @Data
 public class InsurancePolicy {
 
+	@ManyToOne
+	private Policyholder policyholder;
+
 	@OneToOne
 	@JoinColumn(name = "VehicleID")
-	Vehicle vehicle;
+	private Vehicle vehicle;
 
 	@ManyToMany
-	@JoinTable(name = "selectedoption",
-			joinColumns = @JoinColumn(name = "CoverageItemOptionID"),
-			inverseJoinColumns = @JoinColumn(name = "InsurancePolicyID")
+	@JoinTable(
+			joinColumns = @JoinColumn(name = "coverage_item_optionid"),
+			inverseJoinColumns = @JoinColumn(name = "insurance_policy_id")
 	)
-	Collection<CoverageItemOption> coverageItemOptions;
+	private Collection<CoverageItemOption> coverageItemOptions;
 
 	@OneToMany
 	Collection<InsuredDriver> insuredDrivers;

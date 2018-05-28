@@ -1,12 +1,12 @@
 package com.kosta.mock;
 
-import com.kosta.domain.Policyholder;
+import com.kosta.domain.Customer;
 import com.kosta.service.CreditRate;
 import com.kosta.service.CreditService;
 
 public class CreditServiceImp implements CreditService {
 
-    public CreditRate getCredit(Policyholder p) {
+    public CreditRate getCredit(Customer p) {
         //This is mock Service
         if(p.getSocialSecurityNumber()%2==0) {
             return CreditRate.A;
