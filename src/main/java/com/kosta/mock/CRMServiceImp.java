@@ -1,7 +1,7 @@
 package com.kosta.mock;
 
 import com.kosta.domain.Customer;
-import com.kosta.service.CRMService;
+import com.kosta.service.external.CRMService;
 
 public class CRMServiceImp implements CRMService {
 

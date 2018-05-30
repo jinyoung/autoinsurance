@@ -2,7 +2,7 @@ package com.kosta.mock;
 
 import com.kosta.domain.Customer;
 import com.kosta.service.CreditRate;
-import com.kosta.service.CreditService;
+import com.kosta.service.external.CreditService;
 
 public class CreditServiceImp implements CreditService {
 

@@ -2,7 +2,7 @@ package com.kosta.mock;
 
 import com.kosta.domain.Policyholder;
 import com.kosta.domain.Vehicle;
-import com.kosta.service.DMVService;
+import com.kosta.service.external.DMVService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
