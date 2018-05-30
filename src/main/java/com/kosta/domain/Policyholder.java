@@ -6,14 +6,19 @@ import com.kosta.service.external.CreditService;
 import com.kosta.service.external.DMVService;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.PostPersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import java.io.IOException;
 
 @Entity @Data
-public class Policyholder extends Customer {
+public class Policyholder {
 
+	@Id @GeneratedValue
+	@Column(name = "member_id")
+	private long id;
+
+	@OneToOne
+	@JoinColumn(referencedColumnName = "customer_id")
+	private Customer customer;
 	private String driverLicenseNumber;
 	private String driverLicenseStatus;
 	private String highestEduLevel;
@@ -66,7 +71,7 @@ public class Policyholder extends Customer {
 	@PreUpdate
 	public void update() {
 
-		if(getSocialSecurityNumber()!=0){
+		if(customer.getSocialSecurityNumber()!=0){
 			checkCreditRate();
 			checkLicenseInformation();
 		}
@@ -75,8 +80,8 @@ public class Policyholder extends Customer {
 
 	private void checkCreditRate() {
 		//Spring Version
-		CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(this);
-		setCerditRate(cr.toString());
+		CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(customer);
+		customer.setCerditRate(cr.toString());
 		if(cr.compareTo(CreditRate.C) >= 0){
 			throw new IllegalStateException("CreditRate should be higher then 'C'");
 		}

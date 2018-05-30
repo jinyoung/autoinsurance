@@ -2,8 +2,8 @@ package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
 import com.kosta.service.AutoInsuranceService;
-import com.kosta.service.external.CRMService;
 import com.kosta.service.CreditRate;
+import com.kosta.service.external.CRMService;
 import com.kosta.service.external.CreditService;
 import lombok.Data;
 
@@ -15,11 +15,15 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Customer {
 
+	@OneToOne(mappedBy = "customer")
+	private Policyholder policyholder;
+
 	@OneToMany(mappedBy = "customer")
 	List<Vehicle> vehicles;
 
 	@Id
-	private String ID;
+	@Column(name = "customer_id")
+	private String id;
 	private String firstName;
 	private String lastName;
 	private Date birthDate;
@@ -38,7 +42,7 @@ public class Customer {
 	 */
 	@PrePersist
 	public void registerCustomer() throws IllegalStateException {
-		setID(AutoInsuranceApplication.applicationContext.
+		setId(AutoInsuranceApplication.applicationContext.
 			getBean(CRMService.class).getCustomerID(this));
 	}
 

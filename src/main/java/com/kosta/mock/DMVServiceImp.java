@@ -12,7 +12,7 @@ public class DMVServiceImp implements DMVService {
 
     @Override
     public String getDriverLicenseNumber(Policyholder policyholder) {
-        return policyholder.getFirstName();
+        return policyholder.getCustomer().getFirstName();
     }
 
     @Override
@@ -24,12 +24,12 @@ public class DMVServiceImp implements DMVService {
     @Override
     public List<Vehicle> getVehicles(Policyholder policyholder) {
         List<Vehicle> vehicles = new ArrayList<>();
-        vehicles.add( new Vehicle(policyholder.getID()+"1",
+        vehicles.add( new Vehicle(policyholder.getId()+"1",
                 "type", "make", "model",
-                LocalDate.of(2008,0,1),policyholder));
-        vehicles.add( new Vehicle(policyholder.getID()+"2",
+                LocalDate.of(2008,0,1),policyholder.getCustomer()));
+        vehicles.add( new Vehicle(policyholder.getId()+"2",
                 "type", "make", "model",
-                LocalDate.of(2008,0,1),policyholder));
+                LocalDate.of(2008,0,1),policyholder.getCustomer()));
 
         return vehicles;
     }
