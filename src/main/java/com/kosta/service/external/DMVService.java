@@ -1,4 +1,4 @@
-package com.kosta.service;
+package com.kosta.service.external;
 
 import com.kosta.domain.Policyholder;
 import com.kosta.domain.Vehicle;

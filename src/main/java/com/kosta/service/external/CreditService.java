@@ -1,6 +1,7 @@
-package com.kosta.service;
+package com.kosta.service.external;
 
 import com.kosta.domain.Customer;
+import com.kosta.service.CreditRate;
 
 public interface CreditService {
 
