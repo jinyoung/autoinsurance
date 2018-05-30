@@ -24,12 +24,12 @@ public class DMVServiceImp implements DMVService {
     @Override
     public List<Vehicle> getVehicles(Policyholder policyholder) {
         List<Vehicle> vehicles = new ArrayList<>();
-        vehicles.add( new Vehicle(policyholder.getId()+"1",
+        vehicles.add( new Vehicle(policyholder.getCustomer().getId()+"1",
                 "type", "make", "model",
-                LocalDate.of(2008,0,1),policyholder.getCustomer()));
-        vehicles.add( new Vehicle(policyholder.getId()+"2",
+                "2008",policyholder.getCustomer()));
+        vehicles.add( new Vehicle(policyholder.getCustomer().getId()+"2",
                 "type", "make", "model",
-                LocalDate.of(2008,0,1),policyholder.getCustomer()));
+                "2008",policyholder.getCustomer()));
 
         return vehicles;
     }

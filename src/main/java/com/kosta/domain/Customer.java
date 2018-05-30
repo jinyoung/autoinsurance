@@ -33,9 +33,12 @@ public class Customer {
 	private String state;
 	private String zipcode;
 	private int socialSecurityNumber;
-	private String cerditRate;
+	private String creditRate;
 	private String gender;
 	private String marritalStatus;
+
+	@OneToMany(mappedBy = "customer")
+	private List<InsuredDriver> insuredDrivers;
 
 	/**
 	 * Returns Customer.ID
@@ -50,18 +53,17 @@ public class Customer {
 	public void updateCustomer() throws IllegalStateException {
 		if(getSocialSecurityNumber()!=0){
 			checkCreditRate();
-			AutoInsuranceApplication.applicationContext.getBean(AutoInsuranceService.class).promotePolicyholder(this);
 		}
 	}
 
 	private void checkCreditRate() {
 		//Spring Version
 		CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(this);
-		setCerditRate(cr.toString());
+		setCreditRate(cr.toString());
 		if(cr.compareTo(CreditRate.C) >= 0){
 			throw new IllegalStateException("CreditRate should be higher then 'C'");
 		}
-	}
+    }
 
 
 }

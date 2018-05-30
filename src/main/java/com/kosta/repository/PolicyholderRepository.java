@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "*")
 @RepositoryRestResource(path = "/policyholder")
-public interface PolicyholderRepository extends JpaRepository<Policyholder, String> {
+public interface PolicyholderRepository extends JpaRepository<Policyholder, Long> {
 }

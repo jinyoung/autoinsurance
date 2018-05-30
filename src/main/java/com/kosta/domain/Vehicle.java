@@ -12,7 +12,7 @@ public class Vehicle {
 	public Vehicle() {
 	}
 
-	public Vehicle(String ID, String type, String make, String model, LocalDate year, Customer customer) {
+	public Vehicle(String ID, String type, String make, String model, String year, Customer customer) {
 		this.ID = ID;
 		this.type = type;
 		this.make = make;
@@ -26,7 +26,7 @@ public class Vehicle {
 	private String type;
 	private String make;
 	private String model;
-	private LocalDate year;
+	private String year;
 	private String primaryUsage;
 	private String parkingZipcode;
 	private String ownership;

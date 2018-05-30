@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Policyholder {
 
 	@Id @GeneratedValue
-	@Column(name = "member_id")
+	@Column(name = "policyholder_id")
 	private long id;
 
 	@OneToOne
@@ -28,18 +28,18 @@ public class Policyholder {
 	private String previousInsuranceCarrier;
 	private String previousInsurancePolicyID;
 
-	public void updatePolicyholder() {
-		// TODO - implement Policyholder.updatePolicyholder
-		throw new UnsupportedOperationException();
+	public void registerVehicleToInsure(){
+
 	}
 
-	public void registerVehicleToInsure(){
-		DMVService ds = AutoInsuranceApplication.applicationContext.getBean(DMVService.class);
-		setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
-		setDriverLicenseStatus(ds.getDriverLicenseStatus(this));
-	}
-	@PostPersist
-	public void validate() throws IOException {
+	@PrePersist
+	public void updatePolicyholder() {
+
+		if(customer.getSocialSecurityNumber()!=0){
+			checkLicenseInformation();
+		} else {
+			throw new IllegalStateException("not field social security number");
+		}
 
 
 
@@ -67,24 +67,6 @@ public class Policyholder {
 //		if(!eligibility2.meet(this))
 //			throw new IllegalStateException("not eligile");
 
-	}
-	@PreUpdate
-	public void update() {
-
-		if(customer.getSocialSecurityNumber()!=0){
-			checkCreditRate();
-			checkLicenseInformation();
-		}
-
-	}
-
-	private void checkCreditRate() {
-		//Spring Version
-		CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(customer);
-		customer.setCerditRate(cr.toString());
-		if(cr.compareTo(CreditRate.C) >= 0){
-			throw new IllegalStateException("CreditRate should be higher then 'C'");
-		}
 	}
 
 	private void checkLicenseInformation() {

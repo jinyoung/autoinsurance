@@ -2,20 +2,13 @@ package com.kosta.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity @Data
 public class InsuredDriver {
 
-	@Id
-	private long id;
-
-	@ManyToOne(targetEntity = InsurancePolicy.class)
-	@JoinColumn(name = "InsurancePolicyID")
-	InsurancePolicy insurancePolicy;
+	@EmbeddedId
+	private InsuredDriverPK id;
 
 	private String relationToPolicyholder;
 

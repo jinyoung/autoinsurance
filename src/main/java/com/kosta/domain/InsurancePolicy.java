@@ -11,6 +11,14 @@ import java.util.List;
 @Entity @Data
 public class InsurancePolicy {
 
+	@Id @GeneratedValue
+	private long ID;
+	private String state;
+	private Date coveageStartDate;
+	private BigDecimal insurancePremium;
+	private String billPlan;
+	private char[] signature;
+
 	@OneToMany(mappedBy = "insurancePolicy")
 	private List<PremiumPayment> premiumPayment;
 
@@ -29,16 +37,10 @@ public class InsurancePolicy {
 	)
 	private Collection<CoverageItemOption> coverageItemOptions;
 
-	@OneToMany
+	@OneToMany(mappedBy = "insurancePolicy")
 	Collection<InsuredDriver> insuredDrivers;
 
-	@Id
-	private String ID;
-	private String state;
-	private Date coveageStartDate;
-	private BigDecimal insurancePremium;
-	private String billPlan;
-	private char[] signature;
+
 
 	/**
 	 * Returns .InsurancePolicy.ID
