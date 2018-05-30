@@ -2,12 +2,12 @@ package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
 import com.kosta.service.CreditRate;
-import com.kosta.service.CreditService;
-import com.kosta.service.DMVService;
+import com.kosta.service.external.CreditService;
+import com.kosta.service.external.DMVService;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.PrePersist;
+import javax.persistence.PostPersist;
 import javax.persistence.PreUpdate;
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class Policyholder extends Customer {
 		setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
 		setDriverLicenseStatus(ds.getDriverLicenseStatus(this));
 	}
-	@PrePersist
+	@PostPersist
 	public void validate() throws IOException {
 
 

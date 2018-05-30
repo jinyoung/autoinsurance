@@ -7,20 +7,21 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity @Data
-@IdClass(PremiumPaymentID.class)
+@IdClass(PremiumPaymentPK.class)
 public class PremiumPayment {
 
 	@Id
-	@OneToOne(targetEntity = InsurancePolicy.class)
-	@JoinColumn(name = "InsurancePolicyID")
+	@ManyToOne
+	@JoinColumn(name = "InsurancePolicyID", referencedColumnName = "ID")
 	InsurancePolicy insurancePolicy;
+
+	@Id
+	private Date paymentDate;
+
 	private String paymentMethod;
 	private String accountID;
 	private String accountPasscode;
 	private BigDecimal paidAmount;
-
-	@Id
-	private Date paymentDate;
 
 	/**
 	 *

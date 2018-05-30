@@ -6,9 +6,13 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity @Data
 public class InsurancePolicy {
+
+	@OneToMany(mappedBy = "insurancePolicy")
+	private List<PremiumPayment> premiumPayment;
 
 	@ManyToOne
 	private Policyholder policyholder;
@@ -19,8 +23,9 @@ public class InsurancePolicy {
 
 	@ManyToMany
 	@JoinTable(
-			joinColumns = @JoinColumn(name = "coverage_item_optionid"),
-			inverseJoinColumns = @JoinColumn(name = "insurance_policy_id")
+			name = "insurance_policy_coverage_item_option",
+			inverseJoinColumns = @JoinColumn(name = "coverage_item_optionid"),
+			joinColumns = @JoinColumn(name = "insurance_policy_id")
 	)
 	private Collection<CoverageItemOption> coverageItemOptions;
 

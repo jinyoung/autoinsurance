@@ -1,9 +1,10 @@
 package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
-import com.kosta.service.CRMService;
+import com.kosta.service.AutoInsuranceService;
+import com.kosta.service.external.CRMService;
 import com.kosta.service.CreditRate;
-import com.kosta.service.CreditService;
+import com.kosta.service.external.CreditService;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -45,6 +46,7 @@ public class Customer {
 	public void updateCustomer() throws IllegalStateException {
 		if(getSocialSecurityNumber()!=0){
 			checkCreditRate();
+			AutoInsuranceApplication.applicationContext.getBean(AutoInsuranceService.class).promotePolicyholder(this);
 		}
 	}
 
