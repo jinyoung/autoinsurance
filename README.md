@@ -20,4 +20,13 @@
 - `http localhost:18080/policyholder customer=http://localhost:18080/customers/BCA`
 
 ## InsurancePolicy 생성
-- `http localhost:18080//insurance-policy id="BCA1" state="Quote Created" vehicle="http://localhost:18080/vehicle/BCA1"`
+- `http localhost:18080/insurance-policy id="BCA1" state="Quote Created" vehicle="http://localhost:18080/vehicle/BCA1"`
+
+## 추가정보 입력
+- `http PATCH "http://localhost:18080/customers/BCA" gender="m" marritalStatus="m"`
+- `http PATCH "http://localhost:18080/policyholder/1" highestEduLevel="h" accidentHistory="none"`
+- `http PATCH "http://localhost:18080/vehicle/BCA1" primaryUsage="p" parkingZipcode="z" ownership="own"`
+
+## InsuredDriver 추가
+- `http localhost:18080/customers firstName="Driver" lastName="Insured" birthDate="1986-10-15" driverLicenseNumber="1111" gender="m" marritalStatus="m"`
+- `http localshot:18080/insured-drivers  `
