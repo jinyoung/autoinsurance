@@ -1,13 +1,15 @@
-package com.kosta.rules;
+package com.kosta.rules.customer;
 
 import com.kosta.AutoInsuranceApplication;
 import com.kosta.domain.Customer;
+import com.kosta.rules.Evaluate;
+import com.kosta.rules.Operator;
 import com.kosta.service.CreditRate;
 import com.kosta.service.external.CreditService;
 
-public class CreditEvaluate extends Evaluate {
+public class CreditEvaluate extends Evaluate<Customer, CreditRate> {
 
-    public CreditEvaluate(Operator operator, Object compareeValue) {
+    public CreditEvaluate(Operator operator, CreditRate compareeValue) {
         super(operator, compareeValue);
     }
 
@@ -15,7 +17,7 @@ public class CreditEvaluate extends Evaluate {
     public boolean meet(Customer customer) {
 
         CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(customer);
-        int compareResult = cr.compareTo((CreditRate)compareeValue);
+        int compareResult = cr.compareTo(compareeValue);
         switch (getOperator()){
             case EQUALS:
                 return compareResult == 0;

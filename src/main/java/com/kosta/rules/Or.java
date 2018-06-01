@@ -1,17 +1,15 @@
 package com.kosta.rules;
 
-import com.kosta.domain.Customer;
-
-public class Or extends And {
+public class Or<T> extends And<T> {
     
     public Or(Rule[] childRules) {
         super(childRules);
     }
 
     @Override
-    public boolean meet(Customer customer) {
+    public boolean meet(T t) {
         for(Rule rule : childRules){
-            if(rule.meet(customer)) return true;
+            if(rule.meet(t)) return true;
         }
 
         return false;

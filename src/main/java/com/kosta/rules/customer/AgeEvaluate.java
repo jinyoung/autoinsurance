@@ -1,11 +1,13 @@
-package com.kosta.rules;
+package com.kosta.rules.customer;
 
 import com.kosta.domain.Customer;
+import com.kosta.rules.Evaluate;
+import com.kosta.rules.Operator;
 
 import java.util.Calendar;
 
-public class AgeEvaluate extends Evaluate {
-    public AgeEvaluate(Operator operator, Object compareeValue) {
+public class AgeEvaluate extends Evaluate<Customer, Integer> {
+    public AgeEvaluate(Operator operator, int compareeValue) {
         super(operator, compareeValue);
     }
 
@@ -17,11 +19,11 @@ public class AgeEvaluate extends Evaluate {
         int year = cal.get(Calendar.YEAR);
         switch (getOperator()){
             case EQUALS:
-                return year == (int)compareeValue;
+                return year == compareeValue;
             case MORE:
-                return year < (int)compareeValue;
+                return year < compareeValue;
             case LESS:
-                return year < (int)compareeValue;
+                return year < compareeValue;
         }
         throw new IllegalArgumentException("Not Matched Operations");
     }

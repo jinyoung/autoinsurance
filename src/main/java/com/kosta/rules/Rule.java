@@ -1,8 +1,6 @@
 package com.kosta.rules;
 
-import com.kosta.domain.Customer;
+public interface Rule<T> {
 
-public interface Rule {
-
-    boolean meet(Customer customer);
+    boolean meet(T t);
 }

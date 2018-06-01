@@ -1,9 +1,11 @@
-package com.kosta.rules;
+package com.kosta.rules.customer;
 
 import com.kosta.domain.Customer;
+import com.kosta.rules.Evaluate;
+import com.kosta.rules.Operator;
 
-public class MeritalStatusEvaluate extends Evaluate {
-    public MeritalStatusEvaluate(Operator operator, Object compareeValue) {
+public class MeritalStatusEvaluate extends Evaluate<Customer, String> {
+    public MeritalStatusEvaluate(Operator operator, String compareeValue) {
         super(operator, compareeValue);
     }
 

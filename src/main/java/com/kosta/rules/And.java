@@ -1,11 +1,9 @@
 package com.kosta.rules;
 
-import com.kosta.domain.Customer;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class And implements Rule {
+public class And<T> implements Rule<T> {
     public And(Rule[] childRules) {
 
         this.childRules = new ArrayList<Rule>();
@@ -29,9 +27,9 @@ public class And implements Rule {
     List<Rule> childRules;
 
     @Override
-    public boolean meet(Customer customer) {
+    public boolean meet(T t) {
         for(Rule rule : childRules){
-            if(rule.meet(customer)) return false;
+            if(rule.meet(t)) return false;
         }
 
         return true;

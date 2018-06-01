@@ -5,18 +5,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public abstract class  Evaluate implements Rule {
+public abstract class Evaluate<T, V> implements Rule<T> {
 
-    public Evaluate(Operator operator, Object compareeValue){
+    public Evaluate(Operator operator, V compareeValue){
         setOperator(operator);
         setCompareeValue(compareeValue);
     }
 
-    public Object getCompareeValue() {
+    public V getCompareeValue() {
         return compareeValue;
     }
 
-    public void setCompareeValue(Object compareeValue) {
+    public void setCompareeValue(V compareeValue) {
         this.compareeValue = compareeValue;
     }
 
@@ -28,9 +28,9 @@ public abstract class  Evaluate implements Rule {
         this.operator = operator;
     }
 
-    Object compareeValue;
+    protected V compareeValue;
 
-    Operator operator;
+    protected Operator operator;
 
     public static void main(String[] args) {
 
