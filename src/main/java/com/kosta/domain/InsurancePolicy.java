@@ -1,5 +1,7 @@
 package com.kosta.domain;
 
+import com.kosta.AutoInsuranceApplication;
+import com.kosta.service.external.NIAService;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,10 +25,11 @@ public class InsurancePolicy {
 	private List<PremiumPayment> premiumPayment;
 
 	@ManyToOne
+	@JoinColumn(name = "policyholder_id")
 	private Policyholder policyholder;
 
 	@OneToOne
-	@JoinColumn(name = "VehicleID")
+	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 
 	@ManyToMany
@@ -38,7 +41,7 @@ public class InsurancePolicy {
 	private Collection<CoverageItemOption> coverageItemOptions;
 
 	@OneToMany(mappedBy = "insurancePolicy")
-	Collection<InsuredDriver> insuredDrivers;
+	List<InsuredDriver> insuredDrivers;
 
 
 
@@ -52,9 +55,25 @@ public class InsurancePolicy {
 		throw new UnsupportedOperationException();
 	}
 
+	@PostUpdate
 	public void updatePolicy() {
-		// TODO - implement InsurancePolicy.updatePolicy
-		throw new UnsupportedOperationException();
+
+		switch (state){
+			case "Passed Eligibility Test":
+				if(this.policyholder.getEmailAddress().isEmpty()||
+						this.policyholder.getHealthInsurance().isEmpty()) {
+					throw new IllegalStateException("Please enter the email address and health insurance");
+				}
+				NIAService niaService = AutoInsuranceApplication.applicationContext.getBean(NIAService.class);
+				niaService.getInsuranceInformation(policyholder.getCustomer().getSocialSecurityNumber(),
+						vehicle.getID(),policyholder);
+				/*2. Customer enters Policyholder emailAddress : String healthInsurance : String
+3. SYSTEM calls NIA with CustomersocialSecurityNumber : intVehicleID : String
+4. NIA returnsPolicyholder previousInsuranceCarrier : StringpreviousInsurancePolicyID : String
+*/
+
+		}
+
 	}
 
 	public void producePolicyDocument() {

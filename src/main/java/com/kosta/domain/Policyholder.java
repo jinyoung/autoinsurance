@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.IOException;
+import java.util.List;
 
 @Entity @Data
 public class Policyholder {
@@ -27,6 +28,9 @@ public class Policyholder {
 	private String healthInsurance;
 	private String previousInsuranceCarrier;
 	private String previousInsurancePolicyID;
+
+	@OneToMany(mappedBy = "policyholder")
+	private List<InsurancePolicy> insurancePolicy;
 
 	public void registerVehicleToInsure(){
 

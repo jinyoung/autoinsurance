@@ -1,8 +1,7 @@
 package com.kosta.service;
 
-import com.kosta.domain.Customer;
-import com.kosta.domain.Policyholder;
+import com.kosta.domain.InsurancePolicy;
 
 public interface AutoInsuranceService {
-    Policyholder promotePolicyholder(Customer customer);
+    void evaluateEligibilityforInsurancePolicy(InsurancePolicy insurancePolicy);
 }

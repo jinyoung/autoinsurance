@@ -1,8 +1,12 @@
 package com.kosta.mock;
 
-import com.kosta.domain.Customer;
-import com.kosta.domain.Policyholder;
+import com.kosta.domain.InsurancePolicy;
+import com.kosta.repository.InsurancePolicyRepository;
 import com.kosta.repository.PolicyholderRepository;
+import com.kosta.rules.And;
+import com.kosta.rules.Operator;
+import com.kosta.rules.Rule;
+import com.kosta.rules.insurancepolicy.InsuredDriversEvaluate;
 import com.kosta.service.AutoInsuranceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,16 +14,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class AutoInsuranceServiceImp implements AutoInsuranceService {
 
+    private final InsurancePolicyRepository insurancePolicyRepository;
     private final PolicyholderRepository policyholderRepository;
 
     @Autowired
-    public AutoInsuranceServiceImp(PolicyholderRepository policyholderRepository) {
+    public AutoInsuranceServiceImp(InsurancePolicyRepository insurancePolicyRepository, PolicyholderRepository policyholderRepository) {
+        this.insurancePolicyRepository = insurancePolicyRepository;
         this.policyholderRepository = policyholderRepository;
     }
 
     @Override
-    public Policyholder promotePolicyholder(Customer customer) {
-        return null;
-    }
+    public void evaluateEligibilityforInsurancePolicy(InsurancePolicy insurancePolicy) {
+        Rule<InsurancePolicy> rule = new And<>(new Rule[]{
+                new InsuredDriversEvaluate(Operator.EQUALS, "")
+        });
 
+        if(!rule.meet(insurancePolicy)){
+            insurancePolicy.setState("Rejected due to Non-Eligibility");
+            insurancePolicyRepository.save(insurancePolicy);
+            throw new IllegalStateException("Rejected due to Non-Eligibility");
+        } else {
+            insurancePolicy.setState("Passed Eligibility Test");
+            insurancePolicyRepository.save(insurancePolicy);
+        }
+    }
 }
