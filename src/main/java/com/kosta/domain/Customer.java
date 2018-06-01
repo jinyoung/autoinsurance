@@ -36,6 +36,7 @@ public class Customer {
 	private String creditRate;
 	private String gender;
 	private String marritalStatus;
+	private String driverLicenseNumber;
 
 	@OneToMany(mappedBy = "customer")
 	private List<InsuredDriver> insuredDrivers;

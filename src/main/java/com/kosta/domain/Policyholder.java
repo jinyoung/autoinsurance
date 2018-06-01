@@ -20,7 +20,6 @@ public class Policyholder {
 	@OneToOne
 	@JoinColumn(referencedColumnName = "customer_id")
 	private Customer customer;
-	private String driverLicenseNumber;
 	private String driverLicenseStatus;
 	private String highestEduLevel;
 	private String accidentHistory;
@@ -76,9 +75,9 @@ public class Policyholder {
 	private void checkLicenseInformation() {
 		//Spring Version
 		DMVService ds = AutoInsuranceApplication.applicationContext.getBean(DMVService.class);
-		setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
+		customer.setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
 		setDriverLicenseStatus(ds.getDriverLicenseStatus(this));
-		if(getDriverLicenseNumber().isEmpty() || getDriverLicenseStatus().isEmpty()) {
+		if(customer.getDriverLicenseNumber().isEmpty() || getDriverLicenseStatus().isEmpty()) {
 			throw new IllegalStateException("Invalid DL");
 		}
 	}
