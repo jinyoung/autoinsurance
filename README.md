@@ -30,7 +30,7 @@
 ## InsuredDriver 추가
 - 원하는 만큼 반복 추가
 - `http localhost:18080/customers firstName="Driver" lastName="Insured" birthDate="1986-10-15" driverLicenseNumber="1111" gender="m" marritalStatus="m"`
-- `http localhost:18080/insured-drivers customer="http://localhost:18080/customers/DriverInsured" insurancePolicy="http:// localhost:18080/insurance-policy/2" relationToPolicyholder="father"`
+- `http localhost:18080/insured-drivers customer="http://localhost:18080/customers/DriverInsured" insurancePolicy="http://localhost:18080/insurance-policy/1" relationToPolicyholder="father"`
 
 ## Insurance Policy의 적격성 평가
-
+- `http localhost:18080/insurence-policy-controller/evaluate insurancePolicy="http://localhost:18080/insurance-policy/1"`
