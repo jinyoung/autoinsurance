@@ -1,7 +1,6 @@
 package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
-import com.kosta.service.AutoInsuranceService;
 import com.kosta.service.CreditRate;
 import com.kosta.service.external.CRMService;
 import com.kosta.service.external.CreditService;

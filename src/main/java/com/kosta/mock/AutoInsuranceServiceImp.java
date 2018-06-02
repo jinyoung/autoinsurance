@@ -24,9 +24,9 @@ public class AutoInsuranceServiceImp implements AutoInsuranceService {
     }
 
     @Override
-    public void evaluateEligibilityforInsurancePolicy(InsurancePolicy insurancePolicy) {
+    public InsurancePolicy evaluateEligibilityforInsurancePolicy(InsurancePolicy insurancePolicy) {
         Rule<InsurancePolicy> rule = new And<>(new Rule[]{
-                new InsuredDriversEvaluate(Operator.EQUALS, "")
+                new InsuredDriversEvaluate(Operator.EMPTY, "")
         });
 
         if(!rule.meet(insurancePolicy)){
@@ -35,7 +35,7 @@ public class AutoInsuranceServiceImp implements AutoInsuranceService {
             throw new IllegalStateException("Rejected due to Non-Eligibility");
         } else {
             insurancePolicy.setState("Passed Eligibility Test");
-            insurancePolicyRepository.save(insurancePolicy);
+            return insurancePolicyRepository.save(insurancePolicy);
         }
     }
 }

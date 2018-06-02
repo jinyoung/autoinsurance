@@ -1,13 +1,10 @@
 package com.kosta.domain;
 
 import com.kosta.AutoInsuranceApplication;
-import com.kosta.service.CreditRate;
-import com.kosta.service.external.CreditService;
 import com.kosta.service.external.DMVService;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.IOException;
 import java.util.List;
 
 @Entity @Data

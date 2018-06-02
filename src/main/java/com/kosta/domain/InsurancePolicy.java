@@ -14,7 +14,7 @@ import java.util.List;
 public class InsurancePolicy {
 
 	@Id @GeneratedValue
-	private long ID;
+	private long id;
 	private String state;
 	private Date coveageStartDate;
 	private BigDecimal insurancePremium;

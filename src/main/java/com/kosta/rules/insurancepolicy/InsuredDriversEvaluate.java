@@ -19,11 +19,11 @@ public class InsuredDriversEvaluate extends Evaluate<InsurancePolicy, String> {
         for(InsuredDriver insuredDriver : insuredDrivers) {
             switch (operator) {
                 case EQUALS:
-                    insuredDriver.getRelationToPolicyholder().equals(compareeValue);
-                    return true;
+                    return insuredDriver.getRelationToPolicyholder().equals(compareeValue);
                 case EMPTY:
-                    insuredDriver.getRelationToPolicyholder().isEmpty();
-                    return true;
+                    return insuredDriver.getRelationToPolicyholder().isEmpty();
+                case NOT_EMPTY:
+                    return !insuredDriver.getRelationToPolicyholder().isEmpty();
             }
         }
         throw new IllegalArgumentException();

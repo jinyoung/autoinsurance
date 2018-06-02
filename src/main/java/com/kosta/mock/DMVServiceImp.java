@@ -4,7 +4,6 @@ import com.kosta.domain.Policyholder;
 import com.kosta.domain.Vehicle;
 import com.kosta.service.external.DMVService;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

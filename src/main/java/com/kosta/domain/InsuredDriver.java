@@ -7,15 +7,13 @@ import javax.persistence.*;
 @Entity @Data
 public class InsuredDriver {
 
-	@EmbeddedId
-	private InsuredDriverPK id;
+	@Id @GeneratedValue
+	private long id;
 
-	@MapsId("customer")
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	@MapsId("insurancePolicy")
 	@ManyToOne
 	@JoinColumn(name = "insurance_policy_id")
 	private InsurancePolicy insurancePolicy;
