@@ -4,6 +4,6 @@ import com.kosta.domain.CoverageItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(path = "/coverage-items")
+@RepositoryRestResource(path = "/coverage-item")
 public interface CoverageItemRepository extends JpaRepository<CoverageItem, String> {
 }
