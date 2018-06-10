@@ -14,9 +14,6 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Customer {
 
-	@OneToOne(mappedBy = "customer")
-	private Policyholder policyholder;
-
 	@OneToMany(mappedBy = "customer")
 	List<Vehicle> vehicles;
 
