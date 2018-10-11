@@ -8,7 +8,7 @@ public class CreditServiceImp implements CreditService {
 
     public CreditRate getCredit(Customer p) {
         //This is mock Service
-        if(Integer.getInteger(p.getSocialSecurityNumber())%2==0) {
+        if(Integer.parseInt(p.getSocialSecurityNumber())%2==0) {
             return CreditRate.A;
         } else {
             return CreditRate.D;
