@@ -1,5 +1,6 @@
 package com.kosta.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kosta.AutoInsuranceApplication;
 import com.kosta.service.CreditRate;
 import com.kosta.service.external.CRMService;
@@ -13,6 +14,18 @@ import java.util.List;
 @Entity @Data
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Customer {
+
+	@Transient @JsonIgnore
+	CRMService crmService;
+
+	@Transient @JsonIgnore
+	CreditService creditService;
+
+	public Customer() {
+		crmService = AutoInsuranceApplication.applicationContext.getBean(CRMService.class);
+		creditService = AutoInsuranceApplication.applicationContext.getBean(CreditService.class);
+	}
+
 
 	@OneToMany(mappedBy = "customer")
 	List<Vehicle> vehicles;
@@ -42,20 +55,19 @@ public class Customer {
 	 */
 	@PrePersist
 	public void registerCustomer() throws IllegalStateException {
-		setId(AutoInsuranceApplication.applicationContext.
-			getBean(CRMService.class).getCustomerID(this));
+		setId(crmService.getCustomerID(this));
 	}
 
 	@PostUpdate
 	public void updateCustomer() throws IllegalStateException {
-		if(getSocialSecurityNumber()!=0){
+		if(!getSocialSecurityNumber().isEmpty()){
 			checkCreditRate();
 		}
 	}
 
 	private void checkCreditRate() {
 		//Spring Version
-		CreditRate cr = AutoInsuranceApplication.applicationContext.getBean(CreditService.class).getCredit(this);
+		CreditRate cr = creditService.getCredit(this);
 		setCreditRate(cr.toString());
 		if(cr.compareTo(CreditRate.C) >= 0){
 			throw new IllegalStateException("CreditRate should be higher then 'C'");
