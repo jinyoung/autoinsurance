@@ -28,7 +28,7 @@ public class Customer {
 	private String city;
 	private String state;
 	private String zipcode;
-	private int socialSecurityNumber;
+	private String socialSecurityNumber;
 	private String creditRate;
 	private String gender;
 	private String marritalStatus;

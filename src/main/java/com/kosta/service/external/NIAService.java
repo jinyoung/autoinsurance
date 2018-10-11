@@ -9,6 +9,6 @@ public interface NIAService {
 4. NIA returns Policyholder previousInsuranceCarrier : String previousInsurancePolicyID : String
 
  */
-    Policyholder getInsuranceInformation(int socialSecurityNumber, String vehicleID, Policyholder policyholder);
+    Policyholder getInsuranceInformation(String socialSecurityNumber, String vehicleID, Policyholder policyholder);
 
 }

@@ -35,7 +35,7 @@ public class Policyholder {
 	@PrePersist
 	public void updatePolicyholder() {
 
-		if(customer.getSocialSecurityNumber()!=0){
+		if(!customer.getSocialSecurityNumber().isEmpty()){
 			checkLicenseInformation();
 		} else {
 			throw new IllegalStateException("not field social security number");
