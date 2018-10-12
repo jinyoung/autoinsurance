@@ -3,6 +3,7 @@ package com.kosta.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -36,7 +37,7 @@ public class InsurancePolicy {
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "insurance_policy_coverage_item_option",
@@ -61,8 +62,25 @@ public class InsurancePolicy {
 		throw new UnsupportedOperationException();
 	}
 
-	@PreUpdate
-	public void updatePolicy() {
+
+    @PreUpdate
+	public void preUpdate(){
+	    updatePolicy();
+	    //calculateInsurancePremium();
+    }
+
+    public void calculateInsurancePremium(){
+	    log.info("in calculate");
+	    if(!CollectionUtils.isEmpty(coverageItemOptions)){
+            BigDecimal result = new BigDecimal(0);
+            for(CoverageItemOption c : coverageItemOptions){
+                result = result.add(c.getValue());
+            }
+            insurancePremium = result;
+        }
+    }
+
+	private void updatePolicy() {
 
 		switch (state){
 			case "Passed Eligibility Test":

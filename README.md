@@ -37,13 +37,11 @@
 
 ## Coverage Item Option 선택
 - REST client를 이용하여야 함
-    - URL : `http://localhost:18080/insurance-policy/1/coverageItemOptions`
-    - METHOD : `POST` 
+    - URL : `http://localhost:18080/insurance-policy/1/coverageItemOptions`j
+    - METHOD : `PATCH` 
     - HEADER : `Content-Type : uri-list`
     - BODY
 ```
 http://localhost:18080/coverage-item-option/CO1
 http://localhost:18080/coverage-item-option/CO2
 ```
-
-http PATCH localhost:18080/customer/BEDCA policyholderInformation:='{"accidentHistory":"Hello"}'

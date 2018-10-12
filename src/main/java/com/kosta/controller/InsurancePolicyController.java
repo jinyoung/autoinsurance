@@ -15,7 +15,6 @@ import javax.persistence.EntityNotFoundException;
 
 @Slf4j
 @RestController
-//@RequestMapping("/insurence-policy")
 public class InsurancePolicyController {
 
     @Resource
@@ -36,4 +35,12 @@ public class InsurancePolicyController {
         //return null;
     }
 
+    @RequestMapping(path = "insurance-policy/{insurance-policy-id}/calculate", method = RequestMethod.POST)
+    public InsurancePolicy calculateInsurancePolicy(@PathVariable("insurance-policy-id") long id){
+        InsurancePolicy insurancePolicy = insurancePolicyRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("Not Found Entity"));
+        insurancePolicy.calculateInsurancePremium();
+        return insurancePolicy;
+        //return null;
+    }
 }
