@@ -7,9 +7,9 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity @Data @Slf4j
 public class InsurancePolicy {
@@ -36,18 +36,18 @@ public class InsurancePolicy {
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "insurance_policy_coverage_item_option",
 			inverseJoinColumns = @JoinColumn(name = "coverage_item_optionid"),
 			joinColumns = @JoinColumn(name = "insurance_policy_id")
 	)
-	private Collection<CoverageItemOption> coverageItemOptions;
+	private Set<CoverageItemOption> coverageItemOptions;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "insurancePolicy")
-	List<InsuredDriver> insuredDrivers;
+	private List<InsuredDriver> insuredDrivers;
 
 
 
