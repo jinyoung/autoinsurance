@@ -1,6 +1,6 @@
 package com.kosta.mock;
 
-import com.kosta.domain.Policyholder;
+import com.kosta.domain.Customer;
 import com.kosta.domain.Vehicle;
 import com.kosta.service.external.DMVService;
 
@@ -10,25 +10,25 @@ import java.util.List;
 public class DMVServiceImp implements DMVService {
 
     @Override
-    public String getDriverLicenseNumber(Policyholder policyholder) {
-        return policyholder.getCustomer().getFirstName();
+    public String getDriverLicenseNumber(Customer customer) {
+        return customer.getFirstName();
     }
 
     @Override
-    public String getDriverLicenseStatus(Policyholder policyholder) {
+    public String getDriverLicenseStatus(Customer customer) {
         //this is mock
         return "G";
     }
 
     @Override
-    public List<Vehicle> getVehicles(Policyholder policyholder) {
+    public List<Vehicle> getVehicles(Customer customer) {
         List<Vehicle> vehicles = new ArrayList<>();
-        vehicles.add( new Vehicle(policyholder.getCustomer().getId()+"1",
+        vehicles.add( new Vehicle(customer.getId()+"1",
                 "type", "make", "model",
-                "2008",policyholder.getCustomer()));
-        vehicles.add( new Vehicle(policyholder.getCustomer().getId()+"2",
+                "2008",customer));
+        vehicles.add( new Vehicle(customer.getId()+"2",
                 "type", "make", "model",
-                "2008",policyholder.getCustomer()));
+                "2008",customer));
 
         return vehicles;
     }

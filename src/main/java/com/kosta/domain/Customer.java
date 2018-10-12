@@ -6,6 +6,7 @@ import com.kosta.service.CreditRate;
 import com.kosta.service.external.CRMService;
 import com.kosta.service.external.CreditService;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -24,6 +25,7 @@ public class Customer {
 	public Customer() {
 		crmService = AutoInsuranceApplication.applicationContext.getBean(CRMService.class);
 		creditService = AutoInsuranceApplication.applicationContext.getBean(CreditService.class);
+		policyholderInformation = new PolicyholderInformation();
 	}
 
 
@@ -47,8 +49,14 @@ public class Customer {
 	private String marritalStatus;
 	private String driverLicenseNumber;
 
+	@Embedded
+	private PolicyholderInformation policyholderInformation;
+
 	@OneToMany(mappedBy = "customer")
 	private List<InsuredDriver> insuredDrivers;
+
+	@OneToMany(mappedBy = "policyholder")
+	private List<InsurancePolicy> insurancePolicy;
 
 	/**
 	 * Returns Customer.ID
@@ -60,7 +68,7 @@ public class Customer {
 
 	@PostUpdate
 	public void updateCustomer() throws IllegalStateException {
-		if(!getSocialSecurityNumber().isEmpty()){
+		if(!StringUtils.isEmpty(getSocialSecurityNumber())){
 			checkCreditRate();
 		}
 	}

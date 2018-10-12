@@ -3,6 +3,7 @@ package com.kosta.domain;
 import com.kosta.AutoInsuranceApplication;
 import com.kosta.service.external.NIAService;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -26,7 +27,7 @@ public class InsurancePolicy {
 
 	@ManyToOne
 	@JoinColumn(name = "policyholder_id")
-	private Policyholder policyholder;
+	private Customer policyholder;
 
 	@OneToOne
 	@JoinColumn(name = "vehicle_id")
@@ -55,19 +56,19 @@ public class InsurancePolicy {
 		throw new UnsupportedOperationException();
 	}
 
-	@PostUpdate
+	@PreUpdate
 	public void updatePolicy() {
 
 		switch (state){
 			case "Passed Eligibility Test":
-				if(this.policyholder.getEmailAddress().isEmpty()||
-						this.policyholder.getHealthInsurance().isEmpty()) {
+				if(StringUtils.isEmpty(policyholder.getPolicyholderInformation().getEmailAddress())||
+						StringUtils.isEmpty(policyholder.getPolicyholderInformation().getHealthInsurance().isEmpty())) {
 					throw new IllegalStateException("Please enter the email address and health insurance");
 				}
 				NIAService niaService = AutoInsuranceApplication.applicationContext.getBean(NIAService.class);
-				niaService.getInsuranceInformation(policyholder.getCustomer().getSocialSecurityNumber(),
-						vehicle.getID(),policyholder);
-				/*2. Customer enters Policyholder emailAddress : String healthInsurance : String
+				niaService.getInsuranceInformation(policyholder.getSocialSecurityNumber(),
+						vehicle.getID(),policyholder.getPolicyholderInformation());
+				/*2. Customer enters PolicyholderInformation emailAddress : String healthInsurance : String
 3. SYSTEM calls NIA with CustomersocialSecurityNumber : intVehicleID : String
 4. NIA returnsPolicyholder previousInsuranceCarrier : StringpreviousInsurancePolicyID : String
 */

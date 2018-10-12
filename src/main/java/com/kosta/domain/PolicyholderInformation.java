@@ -1,22 +1,16 @@
 package com.kosta.domain;
 
-import com.kosta.AutoInsuranceApplication;
-import com.kosta.service.external.DMVService;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
+import javax.persistence.PrePersist;
+import java.io.Serializable;
 
-@Entity @Data
-public class Policyholder {
+@Embeddable @Data
+public class PolicyholderInformation implements Serializable {
 
-	@Id @GeneratedValue
-	@Column(name = "policyholder_id")
-	private long id;
-
-	@OneToOne
-	@JoinColumn(referencedColumnName = "customer_id")
-	private Customer customer;
 	private String driverLicenseStatus;
 	private String highestEduLevel;
 	private String accidentHistory;
@@ -25,9 +19,6 @@ public class Policyholder {
 	private String previousInsuranceCarrier;
 	private String previousInsurancePolicyID;
 
-	@OneToMany(mappedBy = "policyholder")
-	private List<InsurancePolicy> insurancePolicy;
-
 	public void registerVehicleToInsure(){
 
 	}
@@ -35,11 +26,11 @@ public class Policyholder {
 	@PrePersist
 	public void updatePolicyholder() {
 
-		if(!customer.getSocialSecurityNumber().isEmpty()){
-			checkLicenseInformation();
-		} else {
-			throw new IllegalStateException("not field social security number");
-		}
+//		if(!customer.getSocialSecurityNumber().isEmpty()){
+//			checkLicenseInformation();
+//		} else {
+//			throw new IllegalStateException("not field social security number");
+//		}
 
 
 
@@ -71,11 +62,11 @@ public class Policyholder {
 
 	private void checkLicenseInformation() {
 		//Spring Version
-		DMVService ds = AutoInsuranceApplication.applicationContext.getBean(DMVService.class);
-		customer.setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
-		setDriverLicenseStatus(ds.getDriverLicenseStatus(this));
-		if(customer.getDriverLicenseNumber().isEmpty() || getDriverLicenseStatus().isEmpty()) {
-			throw new IllegalStateException("Invalid DL");
-		}
+//		DMVService ds = AutoInsuranceApplication.applicationContext.getBean(DMVService.class);
+//		customer.setDriverLicenseNumber(ds.getDriverLicenseNumber(this));
+//		setDriverLicenseStatus(ds.getDriverLicenseStatus(this));
+//		if(customer.getDriverLicenseNumber().isEmpty() || getDriverLicenseStatus().isEmpty()) {
+//			throw new IllegalStateException("Invalid DL");
+//		}
 	}
 }

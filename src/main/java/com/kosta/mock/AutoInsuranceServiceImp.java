@@ -2,7 +2,6 @@ package com.kosta.mock;
 
 import com.kosta.domain.InsurancePolicy;
 import com.kosta.repository.InsurancePolicyRepository;
-import com.kosta.repository.PolicyholderRepository;
 import com.kosta.rules.And;
 import com.kosta.rules.Operator;
 import com.kosta.rules.Rule;
@@ -15,16 +14,16 @@ import org.springframework.stereotype.Service;
 public class AutoInsuranceServiceImp implements AutoInsuranceService {
 
     private final InsurancePolicyRepository insurancePolicyRepository;
-    private final PolicyholderRepository policyholderRepository;
 
     @Autowired
-    public AutoInsuranceServiceImp(InsurancePolicyRepository insurancePolicyRepository, PolicyholderRepository policyholderRepository) {
+    public AutoInsuranceServiceImp(InsurancePolicyRepository insurancePolicyRepository) {
         this.insurancePolicyRepository = insurancePolicyRepository;
-        this.policyholderRepository = policyholderRepository;
     }
 
     @Override
-    public InsurancePolicy evaluateEligibilityforInsurancePolicy(InsurancePolicy insurancePolicy) {
+    public InsurancePolicy evaluateEligibilityforInsurancePolicy(long id) {
+
+        InsurancePolicy insurancePolicy = insurancePolicyRepository.getOne(id);
         Rule<InsurancePolicy> rule = new And<>(new Rule[]{
                 new InsuredDriversEvaluate(Operator.EMPTY, "")
         });
