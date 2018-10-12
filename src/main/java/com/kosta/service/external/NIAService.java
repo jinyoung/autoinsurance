@@ -1,6 +1,7 @@
 package com.kosta.service.external;
 
 
+import com.kosta.domain.Customer;
 import com.kosta.domain.PolicyholderInformation;
 
 public interface NIAService {
@@ -9,6 +10,6 @@ public interface NIAService {
 4. NIA returns PolicyholderInformation previousInsuranceCarrier : String previousInsurancePolicyID : String
 
  */
-    PolicyholderInformation getInsuranceInformation(String socialSecurityNumber, String vehicleID, PolicyholderInformation policyholderInformation);
+    PolicyholderInformation getInsuranceInformation(Customer customer);
 
 }

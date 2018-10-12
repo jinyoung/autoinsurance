@@ -1,7 +1,5 @@
 package com.kosta.domain;
 
-import com.kosta.AutoInsuranceApplication;
-import com.kosta.service.external.NIAService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -68,9 +66,8 @@ public class InsurancePolicy {
 						StringUtils.isEmpty(policyholder.getPolicyholderInformation().getHealthInsurance().isEmpty())) {
 					throw new IllegalStateException("Please enter the email address and health insurance");
 				}
-				NIAService niaService = AutoInsuranceApplication.applicationContext.getBean(NIAService.class);
-				niaService.getInsuranceInformation(policyholder.getSocialSecurityNumber(),
-						vehicle.getID(),policyholder.getPolicyholderInformation());
+
+
 				/*2. Customer enters PolicyholderInformation emailAddress : String healthInsurance : String
 3. SYSTEM calls NIA with CustomersocialSecurityNumber : intVehicleID : String
 4. NIA returnsPolicyholder previousInsuranceCarrier : StringpreviousInsurancePolicyID : String

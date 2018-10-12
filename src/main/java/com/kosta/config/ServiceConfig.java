@@ -3,9 +3,11 @@ package com.kosta.config;
 import com.kosta.mock.CRMServiceImp;
 import com.kosta.mock.CreditServiceImp;
 import com.kosta.mock.DMVServiceImp;
+import com.kosta.mock.NIAServiceImp;
 import com.kosta.service.external.CRMService;
 import com.kosta.service.external.CreditService;
 import com.kosta.service.external.DMVService;
+import com.kosta.service.external.NIAService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,6 +26,11 @@ public class ServiceConfig {
     @Bean
     public DMVService dmvService(){
         return new DMVServiceImp();
+    }
+
+    @Bean
+    public NIAService niaService(){
+        return new NIAServiceImp();
     }
 
 }

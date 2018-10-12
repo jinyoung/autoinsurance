@@ -2,8 +2,6 @@ package com.kosta.domain;
 
 import lombok.Data;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.persistence.PrePersist;
 import java.io.Serializable;
