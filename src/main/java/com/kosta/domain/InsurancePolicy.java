@@ -3,6 +3,7 @@ package com.kosta.domain;
 import com.kosta.AutoInsuranceApplication;
 import com.kosta.service.external.NIAService;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-@Entity @Data
+@Entity @Data @Slf4j
 public class InsurancePolicy {
 
 	@Id @GeneratedValue
@@ -61,6 +62,8 @@ public class InsurancePolicy {
 
 		switch (state){
 			case "Passed Eligibility Test":
+
+				log.info(policyholder.getPolicyholderInformation().toString());
 				if(StringUtils.isEmpty(policyholder.getPolicyholderInformation().getEmailAddress())||
 						StringUtils.isEmpty(policyholder.getPolicyholderInformation().getHealthInsurance().isEmpty())) {
 					throw new IllegalStateException("Please enter the email address and health insurance");

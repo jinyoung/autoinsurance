@@ -16,16 +16,15 @@
 ## 보유 Vehicle 조회
 - `http localhost:18080/customer/BCA/vehicles`
 
-## PolicyHolder 등록
-- `http localhost:18080/policyholder customer=http://localhost:18080/customer/BCA`
-
 ## InsurancePolicy 생성
-- `http localhost:18080/insurance-policy state="Quote Created" vehicle="http://localhost:18080/vehicle/BCA1"`
+- `http localhost:18080/insurance-policy state="Quote Created" vehicle="http://localhost:18080/vehicle/BCA1" policyholder="http://localhost:18080/customer/BCA"`
 
 ## 추가정보 입력
 - `http PATCH "http://localhost:18080/customer/BCA" gender="m" marritalStatus="m"`
-- `http PATCH "http://localhost:18080/policyholder/1" highestEduLevel="h" accidentHistory="none"`
+- `http PATCH "http://localhost:18080/customer/BCA" policyholderInformation:='{"highestEduLevel":"h","accidentHistory":"none"}'`
 - `http PATCH "http://localhost:18080/vehicle/BCA1" primaryUsage="p" parkingZipcode="z" ownership="own"`
+
+- `http PATCH "http://localhost:18080/customer/BCA" gender="m" marritalStatus="m" policyholderInformation:='{"highestEduLevel":"h","accidentHistory":"none"}'`
 
 ## InsuredDriver 추가
 - 원하는 만큼 반복 추가
@@ -34,3 +33,7 @@
 
 ## Insurance Policy의 적격성 평가
 - `http localhost:18080/insurence-policy-controller/evaluate insurancePolicy="http://localhost:18080/insurance-policy/1"`
+
+
+
+http PATCH localhost:18080/customer/BEDCA policyholderInformation:='{"accidentHistory":"Hello"}'
