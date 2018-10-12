@@ -1,5 +1,8 @@
 package com.kosta.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -21,17 +24,21 @@ public class InsurancePolicy {
 	private String billPlan;
 	private char[] signature;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "insurancePolicy")
 	private List<PremiumPayment> premiumPayment;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "policyholder_id")
 	private Customer policyholder;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "insurance_policy_coverage_item_option",
@@ -40,6 +47,7 @@ public class InsurancePolicy {
 	)
 	private Collection<CoverageItemOption> coverageItemOptions;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "insurancePolicy")
 	List<InsuredDriver> insuredDrivers;
 

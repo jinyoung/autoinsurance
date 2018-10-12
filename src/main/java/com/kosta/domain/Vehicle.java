@@ -1,5 +1,6 @@
 package com.kosta.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -33,7 +34,6 @@ public class Vehicle {
 	@ManyToOne(targetEntity=Customer.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="CustomerID")
 	private Customer customer;
-
 
 	@OneToOne(mappedBy = "vehicle")
 	private InsurancePolicy insurancePolicy;

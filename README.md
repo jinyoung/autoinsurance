@@ -25,6 +25,7 @@
 - `http PATCH "http://localhost:18080/vehicle/BCA1" primaryUsage="p" parkingZipcode="z" ownership="own"`
 
 - `http PATCH "http://localhost:18080/customer/BCA" gender="m" marritalStatus="m" policyholderInformation:='{"highestEduLevel":"h","accidentHistory":"none"}'`
+- `http PATCH localhost:18080/customer/BCA policyholderInformation:='{"emailAddress":"me@email.me", "healthInsurance":"Health"}'`
 
 ## InsuredDriver 추가
 - 원하는 만큼 반복 추가

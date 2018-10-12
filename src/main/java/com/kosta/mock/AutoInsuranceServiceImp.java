@@ -21,9 +21,8 @@ public class AutoInsuranceServiceImp implements AutoInsuranceService {
     }
 
     @Override
-    public InsurancePolicy evaluateEligibilityforInsurancePolicy(long id) {
+    public InsurancePolicy evaluateEligibilityforInsurancePolicy(InsurancePolicy insurancePolicy) {
 
-        InsurancePolicy insurancePolicy = insurancePolicyRepository.getOne(id);
         Rule<InsurancePolicy> rule = new And<>(new Rule[]{
                 new InsuredDriversEvaluate(Operator.EMPTY, "")
         });
