@@ -27,12 +27,12 @@ public class InsurancePolicy {
 	@OneToMany(mappedBy = "insurancePolicy")
 	private List<PremiumPayment> premiumPayment;
 
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name = "policyholder_id")
 	private Customer policyholder;
 
-	@JsonIgnore
+
 	@OneToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;

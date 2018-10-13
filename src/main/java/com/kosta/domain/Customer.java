@@ -31,6 +31,7 @@ public class Customer {
 	}
 
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer")
 	List<Vehicle> vehicles;
 
@@ -54,9 +55,11 @@ public class Customer {
 	@Embedded
 	private PolicyholderInformation policyholderInformation;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer")
 	private List<InsuredDriver> insuredDrivers;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "policyholder")
 	private List<InsurancePolicy> insurancePolicy;
 
