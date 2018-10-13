@@ -62,6 +62,10 @@ public class InsurancePolicy {
 		throw new UnsupportedOperationException();
 	}
 
+    @PrePersist
+    public void prePersist(){
+	    state = "Quote Created";
+    }
 
     @PreUpdate
 	public void preUpdate(){

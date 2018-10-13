@@ -14,4 +14,6 @@ public interface InsuranceProductWithChild {
     String getName();
 
     List<CoverageItemWIthChild> getCoverageItems();
+
+
 }
