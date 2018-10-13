@@ -11,8 +11,7 @@ public class Vehicle {
 	public Vehicle() {
 	}
 
-	public Vehicle(String ID, String type, String make, String model, String year, Customer customer) {
-		this.ID = ID;
+	public Vehicle(String type, String make, String model, String year, Customer customer) {
 		this.type = type;
 		this.make = make;
 		this.model = model;
@@ -20,8 +19,8 @@ public class Vehicle {
 		this.customer = customer;
 	}
 
-	@Id
-	private String ID;
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private long ID;
 	private String type;
 	private String make;
 	private String model;

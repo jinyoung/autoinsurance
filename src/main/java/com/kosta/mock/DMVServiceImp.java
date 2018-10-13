@@ -23,10 +23,10 @@ public class DMVServiceImp implements DMVService {
     @Override
     public List<Vehicle> getVehicles(Customer customer) {
         List<Vehicle> vehicles = new ArrayList<>();
-        vehicles.add( new Vehicle(customer.getId()+"1",
+        vehicles.add( new Vehicle(
                 "type", "make", "model",
                 "2008",customer));
-        vehicles.add( new Vehicle(customer.getId()+"2",
+        vehicles.add( new Vehicle(
                 "type", "make", "model",
                 "2008",customer));
 
