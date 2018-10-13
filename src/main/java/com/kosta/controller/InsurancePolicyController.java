@@ -40,7 +40,7 @@ public class InsurancePolicyController {
         InsurancePolicy insurancePolicy = insurancePolicyRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("Not Found Entity"));
         insurancePolicy.calculateInsurancePremium();
-        return insurancePolicy;
+        return insurancePolicyRepository.save(insurancePolicy);
         //return null;
     }
 }
