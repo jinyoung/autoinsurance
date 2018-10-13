@@ -5,7 +5,7 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-@Projection(name = "child", types = {InsuranceProduct.class})
+@Projection(name = "child", types = {CoverageItem.class})
 public interface CoverageItemWIthChild {
 
     @Value("#{target.ID}")
