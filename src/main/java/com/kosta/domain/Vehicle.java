@@ -30,7 +30,6 @@ public class Vehicle {
 	private String parkingZipcode;
 	private String ownership;
 
-	@JsonIgnore
 	@ManyToOne(targetEntity=Customer.class, fetch=FetchType.LAZY)
 	@JoinColumn(name="CustomerID")
 	private Customer customer;
